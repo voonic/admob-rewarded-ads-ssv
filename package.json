@@ -1,7 +1,7 @@
 {
   "name": "admob-rewarded-ads-ssv",
   "version": "1.0.0",
-  "description": "Server-side verification callbacks for admob rewarded ads.",
+  "description": "Server-side verification callbacks for admob rewarded ads in nodeJS",
   "main": "index.js",
   "repository": "https://github.com/encerge/admob-rewarded-ads-ssv",
   "scripts": {
@@ -12,10 +12,14 @@
     "ssv",
     "rewarded",
     "ads",
+    "nodejs",
     "server",
     "side",
     "validation"
   ],
   "author": "Saket Kumar",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
 }
