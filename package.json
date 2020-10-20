@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Server-side verification callbacks for admob rewarded ads.",
   "main": "index.js",
+  "repository": "https://github.com/encerge/admob-rewarded-ads-ssv",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
