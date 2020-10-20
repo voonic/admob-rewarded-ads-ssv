@@ -1,3 +1,4 @@
+const queryString = require('query-string');
 const crypto = require('crypto');
 const axios = require('axios');
 const GOOGLE_AD_KEY_URL = 'https://gstatic.com/admob/reward/verifier-keys.json';
@@ -42,9 +43,9 @@ async function verify(queryUrl) {
    * Request coming as callback from admob must contain the 'signature' and the 'user_id'.
    * For more info https://developers.google.com/admob/android/rewarded-video-ssv
    */
-  const {signature, key_id} = req.query;
+  const {signature, key_id} = queryString.parse(queryUrl);
   if (!signature) {
-    throw new Error('Invalid Key Signature Supplied');
+    throw new Error('No signature value exist in the URL param');
   }
 
   let queryParamsString = queryUrl;
