@@ -1,6 +1,6 @@
 {
   "name": "admob-rewarded-ads-ssv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server-side verification callbacks for admob rewarded ads in nodeJS",
   "main": "index.js",
   "repository": {
