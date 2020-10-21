@@ -22,9 +22,12 @@ Example with express
 ```JavaScript
 const admobSSV = require('admob-rewarded-ads-ssv');
 
+Add callback to your rewarded ads in your admob account.
+Make sure you listen to 'get' request.
+
 app.get('/ssv-verify', (req, res, next) => {
     // If you want to debug then send second param as true
-    //  admobSSV.verify(req.url, true);
+    // admobSSV.verify(req.url, true);
     admobSSV.verify(req.url)
         .then(() => {
           //Verification Successful
