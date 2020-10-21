@@ -22,22 +22,15 @@ const getGoogleKeysMap = async () => {
 };
 
 /**
- * Checks whether a url is absolute URL.
- * @param {String} url
- */
-const isAbsoluteURL = (url) => {
-  var pattern = /^((http|https):\/\/)/;
-  return pattern.test(url);
-};
-
-/**
  * Verifies the callback url query params string,
  * Resolves the promise if verification was successful, else fails.
- * @param {String} queryUrl 
+ * Wanna 'debug' then pass the second parameter as true.
+ * @param {String} queryUrl
+ * @param {Boolean} debug 
  */
-async function verify(queryUrl) {
+async function verify(queryUrl, debug) {
 
-  if (typeof queryUrl !== "string") throw new TypeError("queryUrl needs to be string!");
+  if (typeof queryUrl !== "string") throw new TypeError("URL needs to be string!");
 
   /**
    * Request coming as callback from admob must contain the 'signature' and the 'user_id'.
@@ -48,10 +41,19 @@ async function verify(queryUrl) {
     throw new Error('No signature value exist in the URL param');
   }
 
+  if(debug) {
+    console.debug('Signature and KeyId ---');
+    console.debug(signature, key_id);
+  }
+
   let queryParamsString = queryUrl;
-  /* If url passed is absolute then extract the query params URL. */
-  if (isAbsoluteURL(queryUrl)) {
+  if (queryParamsString.indexOf('?') > -1) {
     queryParamsString = queryUrl.split('?')[1];
+  }
+
+  if(debug) {
+    console.debug('Query param string ---');
+    console.debug(queryParamsString);
   }
 
   /**
@@ -59,7 +61,12 @@ async function verify(queryUrl) {
    * The last two query parameters of rewarded video SSV callbacks are always signature and key_id, in that order.
    * The remaining query parameters specify the content to be verified. 
    */
-  let contentToVerify = queryParamsString.substring(0, rawURL.indexOf('signature') -1);
+  let contentToVerify = queryParamsString.substring(0, queryParamsString.indexOf('signature') -1);
+
+  if(debug) {
+    console.debug('Content to verify ---');
+    console.debug(contentToVerify);
+  }
 
   let keyMap = await getGoogleKeysMap();
 
